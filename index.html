@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Samir Store</title>
+<style>
+:root{--o:#F85606;--od:#d94700;--bg:#f5f5f5;--c:#fff;--t:#212121;--m:#757575;--b:#e0e0e0;--g:#1a9e5c;--r:#d32f2f;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+body{font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--t);padding-bottom:64px}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit;color:inherit}[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+.demo{background:#212121;color:#ffd9c7;text-align:center;font-size:12px;padding:5px 8px}
+.notice{background:#fff3ec;color:#7a3208;text-align:center;font-size:13px;padding:6px 8px}
+header{background:var(--o);color:#fff;position:sticky;top:0;z-index:20}
+.hd{max-width:1100px;margin:auto;padding:8px 12px;display:flex;gap:10px;align-items:center}
+.logo{font-size:20px;font-weight:800;white-space:nowrap}.logo b{background:#fff;color:var(--o);padding:0 6px;border-radius:4px;margin-left:3px}
+.hd input{flex:1;min-width:0;border:0;border-radius:4px;padding:9px 12px;background:#fff;color:#212121}
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:var(--c);border-top:1px solid var(--b);display:flex}
+.nav a{flex:1;text-align:center;padding:6px 0;font-size:11px;color:var(--m);position:relative}.nav a b{display:block;font-size:18px;font-weight:400}
+.nav a.on{color:var(--o)}.nav i{position:absolute;top:1px;left:55%;background:var(--o);color:#fff;font-style:normal;font-size:10px;border-radius:8px;padding:0 5px}
+@media(min-width:700px){body{padding-bottom:0}.nav{position:static;background:none;border:0;flex:none}.nav a{flex:none;color:#fff;font-size:13px;padding:6px 10px;border-radius:4px}.nav a b{display:inline;font-size:15px;margin-right:3px}.nav a.on{color:#fff;background:rgba(0,0,0,.18)}.nav i{position:static;background:#fff;color:var(--o);margin-left:4px}}
+.bump{animation:bump .35s}@keyframes bump{50%{transform:scale(1.6)}}
+.in{animation:in .25s ease}@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.wrap{max-width:1100px;margin:auto;padding:12px}
+.bn{position:relative;height:150px;border-radius:6px;overflow:hidden;margin-bottom:12px}
+.sl{position:absolute;inset:0;opacity:0;transition:opacity .6s;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;cursor:pointer}.sl.on{opacity:1}
+.sl h1{font-size:22px;max-width:420px}.sl p{opacity:.95;margin-top:4px;max-width:420px}.sl span{font-size:70px}
+.dots{position:absolute;bottom:8px;left:0;right:0;text-align:center}.dots i{display:inline-block;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5);margin:0 3px}.dots i.on{background:#fff}
+@media(min-width:700px){.bn{height:220px}.sl h1{font-size:32px}.sl span{font-size:110px}}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px}.chips button{white-space:nowrap;border:1px solid var(--b);background:var(--c);border-radius:20px;padding:6px 14px;cursor:pointer;transition:background .15s}
+.chips .on{background:var(--o);border-color:var(--o);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}@media(min-width:1000px){.grid{grid-template-columns:repeat(5,1fr)}}
+.card{background:var(--c);border-radius:4px;position:relative;overflow:hidden;border:1px solid var(--b);display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.im{display:grid;place-items:center;font-size:64px;height:140px;background:#fff3ec;overflow:hidden}.im img{width:100%;height:100%;object-fit:cover}
+.hrt{position:absolute;top:6px;right:6px;border:0;background:var(--c);width:30px;height:30px;border-radius:50%;color:#bbb;font-size:16px;cursor:pointer}.hrt.on{color:var(--r)}
+.pb{padding:8px;display:flex;flex-direction:column;gap:3px;flex:1}.nm{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px}
+.pr{color:var(--o);font-size:18px;font-weight:700}.old{color:var(--m);font-size:12px}
+.btn{background:var(--o);color:#fff;border:0;border-radius:4px;padding:9px 14px;cursor:pointer;font-weight:600;transition:background .15s,transform .1s}.btn:hover{background:var(--od)}.btn:active{transform:scale(.97)}.btn:disabled{background:#bbb;cursor:not-allowed}
+.btn.ln{background:var(--c);color:var(--o);border:1px solid var(--o)}.pb .btn{margin-top:auto}
+.box{background:var(--c);border:1px solid var(--b);border-radius:4px;padding:14px;margin-bottom:10px}
+.two{display:grid;gap:10px}@media(min-width:800px){.two{grid-template-columns:1.4fr 1fr}}
+h2{font-size:20px;margin:6px 0 10px}h3{margin-bottom:8px;font-size:16px}
+label{display:block;margin-bottom:10px;font-size:13px;color:var(--m)}
+label input,label select,label textarea{display:block;width:100%;margin-top:3px;padding:9px;border:1px solid var(--b);border-radius:4px;background:var(--c)}
+label.rad{display:flex;flex-direction:column;gap:4px;color:var(--t);border:1px solid var(--b);border-radius:4px;padding:9px;margin-bottom:6px}label.rad .rd-row{display:flex;gap:8px;align-items:center}label.rad input{width:auto;margin:0}
+.row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--b)}.row:last-child{border:0}
+.row .e{font-size:30px;background:#fff3ec;border-radius:4px;width:56px;height:56px;display:grid;place-items:center;overflow:hidden;flex:none}.row .e img{width:100%;height:100%;object-fit:cover}.row .g{flex:1;min-width:0}
+.q{display:flex;align-items:center;gap:6px}.q button{width:28px;height:28px;border:1px solid var(--b);background:var(--c);border-radius:4px;cursor:pointer}
+.sum div{display:flex;justify-content:space-between;padding:4px 0}.sum .tot{font-weight:700;font-size:17px;border-top:1px solid var(--b);margin-top:6px;padding-top:8px}
+.empty{text-align:center;padding:40px 16px;background:var(--c);border:1px dashed var(--b);border-radius:6px}.empty .ic{font-size:48px}.empty p{color:var(--m);margin:6px 0 14px}
+.pill{display:inline-block;border-radius:10px;padding:1px 9px;font-size:12px;font-weight:600}
+.Pending{background:#fff3cd;color:#8a6d00}.Confirmed{background:#dbeafe;color:#1e40af}.Processing{background:#cffafe;color:#155e75}.Shipped{background:#e9d5ff;color:#6b21a8}.Out{background:#fde68a;color:#92400e}.Delivered{background:#d1fae5;color:#065f46}.Cancelled{background:#fee2e2;color:#991b1b}
+.tl{margin:10px 0 4px}.tl div{position:relative;padding:0 0 16px 28px;color:var(--m)}.tl div:before{content:"";position:absolute;left:0;top:2px;width:14px;height:14px;border-radius:50%;background:var(--b)}
+.tl div:after{content:"";position:absolute;left:6px;top:18px;bottom:0;width:2px;background:var(--b)}.tl div:last-child:after{display:none}
+.tl .d{color:var(--t);font-weight:600}.tl .d:before,.tl .d:after{background:var(--g)}.tl small{display:block;font-weight:400;color:var(--m)}
+.note{background:#fff3ec;border:1px solid #ffc9ab;color:#7a3208;border-radius:4px;padding:8px 10px;font-size:12px;margin:8px 0}
+#toast{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);background:#212121;color:#fff;padding:10px 16px;border-radius:6px;z-index:99;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%;text-align:center}#toast.s{opacity:1}
+footer{text-align:center;color:var(--m);font-size:12px;padding:16px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div id="notice" class="notice" hidden></div>
+<header><div class="hd"><a href="#/" class="logo" id="logo" onclick="Q='';CAT='';$('#srch').value=''">Samir<b>Store</b></a>
+<input id="srch" type="search" placeholder="Search products" aria-label="Search products" oninput="Q=this.value;if(location.hash.length>2)location.hash='#/';else renderGrid()">
+<nav class="nav" id="nav"></nav></div></header>
+<main id="app"></main><footer id="ft"></footer><div id="toast" role="status"></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig={apiKey:"AIzaSyBzkntp4bFvt6EzxMVT-lzwumlGEE_HjV0",authDomain:"f-commerce-65729.firebaseapp.com",projectId:"f-commerce-65729",storageBucket:"f-commerce-65729.firebasestorage.app",messagingSenderId:"596945581750",appId:"1:596945581750:web:2ba39e368883cb8c6d5817",measurementId:"G-KMGXFQ33GR"};
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth(),db=firebase.firestore();
+const ADMIN_UID = "qoxZgqbQ3lNctRL4qmMDKoiZlA53";
+const $=s=>document.querySelector(s);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.className='s';clearTimeout(toast.t);toast.t=setTimeout(()=>t.className='',2800)};
+const fe=e=>({'auth/invalid-credential':'Wrong email or password','auth/invalid-login-credentials':'Wrong email or password','auth/user-not-found':'No account with that email','auth/wrong-password':'Wrong email or password','auth/email-already-in-use':'That email already has an account','auth/weak-password':'Password needs 6+ characters','auth/invalid-email':'Enter a valid email address','auth/too-many-requests':'Too many attempts. Try again later','auth/requires-recent-login':'Log out and log in again, then retry','permission-denied':'Permission denied by security rules'}[e.code]||e.message||'Something went wrong');
+const DB={products:[],categories:[],banners:[],settings:{},orders:[],me:null,wish:[]},LD={};let user=null,subs=[];
+const docs=s=>s.docs.map(d=>({id:d.id,...d.data()}));
+const bad=e=>{console.error(e);toast(e.code==='permission-denied'?'Permission denied. Publish the Firestore rules.':'Could not load store data')};
+const watch=(k,ref,fn)=>ref.onSnapshot(s=>{fn(s);LD[k]=1;refresh()},e=>{LD[k]=1;bad(e);refresh()});
+function refresh(){if(!LD.auth)return;const a=document.activeElement;if(a&&/INPUT|TEXTAREA|SELECT/.test(a.tagName)&&a.id!=='srch'&&$('#app').contains(a))return;draw()}
+watch('products',db.collection('products'),s=>DB.products=docs(s));
+watch('categories',db.collection('categories'),s=>DB.categories=docs(s));
+watch('banners',db.collection('banners'),s=>DB.banners=docs(s).sort((a,b)=>(a.ts||0)-(b.ts||0)));
+watch('settings',db.doc('settings/store'),s=>DB.settings=s.exists?s.data():{});
+auth.onAuthStateChanged(u=>{subs.forEach(f=>f());subs=[];user=u;DB.me=null;DB.orders=[];DB.wish=[];
+ if(u)subs=[watch('me',db.doc('users/'+u.uid),s=>DB.me=s.exists?s.data():null),watch('orders',db.collection('orders').where('uid','==',u.uid),s=>DB.orders=docs(s).sort((a,b)=>b.ts-a.ts)),watch('wish',db.doc('wishlists/'+u.uid),s=>DB.wish=s.exists?(s.data().ids||[]):[])];
+ LD.auth=1;draw()});
+
+const L=k=>DB[k]||[],S=()=>({name:'Samir Store',tagline:'',phone:'',fb:'',notice:'',dhaka:60,out:120,free:3000,days:'2–4 working days',bkash:'',nagad:'',rocket:'',...DB.settings});
+const money=n=>'৳'+Math.round(Number(n)||0).toLocaleString('en-US');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const prod=id=>DB.products.find(p=>p.id===id);
+const CART=()=>{try{return JSON.parse(localStorage.getItem('samir_cart'))||[]}catch(e){return[]}},SETC=c=>{try{localStorage.setItem('samir_cart',JSON.stringify(c))}catch(e){}};
+const LW=()=>{try{return JSON.parse(localStorage.getItem('samir_wishlist'))||[]}catch(e){return[]}},WL=()=>user?DB.wish:LW();
+const ME=()=>user?{name:user.email,phone:'',district:'',addr:'',...(DB.me||{}),uid:user.uid,email:user.email}:null;
+const pic=p=>p.img?`<img src="${esc(p.img)}" alt="" loading="lazy">`:esc(p.emoji||'📦');
+const empty=(ic,t,m,b,h)=>`<div class="wrap"><div class="empty"><div class="ic">${ic}</div><h3>${t}</h3><p>${m}</p>${b?`<a class="btn" href="${h}">${b}</a>`:''}</div></div>`;
+const DIST='Bagerhat,Bandarban,Barguna,Barishal,Bhola,Bogura,Brahmanbaria,Chandpur,Chapai Nawabganj,Chattogram,Chuadanga,Cumilla,Cox’s Bazar,Dhaka,Dinajpur,Faridpur,Feni,Gaibandha,Gazipur,Gopalganj,Habiganj,Jamalpur,Jashore,Jhalokati,Jhenaidah,Joypurhat,Khagrachhari,Khulna,Kishoreganj,Kurigram,Kushtia,Lakshmipur,Lalmonirhat,Madaripur,Magura,Manikganj,Meherpur,Moulvibazar,Munshiganj,Mymensingh,Naogaon,Narail,Narayanganj,Narsingdi,Natore,Netrokona,Nilphamari,Noakhali,Pabna,Panchagarh,Patuakhali,Pirojpur,Rajbari,Rajshahi,Rangamati,Rangpur,Satkhira,Shariatpur,Sherpur,Sirajganj,Sunamganj,Sylhet,Tangail,Thakurgaon'.split(',');
+const ST=['Pending','Confirmed','Processing','Shipped','Out for Delivery','Delivered'];
+const cls=s=>s==='Out for Delivery'?'Out':s;
+let Q='',CAT='',CK={},bi=0,bt;
+
+function hdr(v){const c=CART().reduce((s,x)=>s+x.qty,0),w=WL().length,me=ME();
+ const n=[['','','Home'],['wish','♥','Wishlist',w],['cart','🛒','Cart',c],['orders','📦','Orders'],['account','👤',me?'Account':'Log in']];
+ $('#nav').innerHTML=n.map(([h,i,t,k])=>`<a href="#/${h}" class="${v===h||(h==='orders'&&v==='track')?'on':''}"><b>${i}</b>${t}${k?`<i>${k}</i>`:''}</a>`).join('');
+ const st=S();$('#logo').innerHTML=esc(st.name).replace(/^(\S+)\s*(.*)$/,(m,a,b)=>a+(b?`<b>${b}</b>`:''));document.title=st.name;
+ $('#notice').hidden=!st.notice;$('#notice').textContent=st.notice||'';
+ $('#ft').innerHTML=`${esc(st.name)} · ${esc(st.tagline)}${st.phone?`<br>Call ${esc(st.phone)}`:''}${st.fb?` · <a href="${esc(st.fb)}" target="_blank" rel="noopener">Facebook page</a>`:''}`}
+function draw(){const h=location.hash.replace(/^#\/?/,'').split('/'),v=h[0],a=h[1];hdr(v);clearInterval(bt);let x;
+ if(!v)x=home();else if(v==='p')x=pd(a);else if(v==='cart')x=cart();else if(v==='wish')x=wl();else if(v==='checkout')x=checkout();else if(v==='account')x=account();else if(v==='orders')x=myOrders();else if(v==='track')x=track(a);
+ else x=empty('🔍','Page not found','That page does not exist.','Back to shop','#/');
+ $('#app').innerHTML=x;if(!v){renderGrid();rot()}}
+addEventListener('hashchange',()=>{draw();const a=$('#app');a.classList.remove('in');void a.offsetWidth;a.classList.add('in');scrollTo(0,0)});
+
+/* Home */
+function home(){const B=L('banners');
+ return `<div class="wrap">${B.length?`<div class="bn">${B.map((b,i)=>`<div class="sl ${i?'':'on'}" style="background:${esc(b.color)}" onclick="CAT='${esc(b.cat||'')}';Q='';renderGrid();$('#grid').scrollIntoView({behavior:'smooth'})"><div><h1>${esc(b.title)}</h1><p>${esc(b.sub)}</p></div><span>${esc(b.emoji)}</span></div>`).join('')}<div class="dots">${B.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div></div>`:''}<div class="chips" id="chips"></div><h2 id="gt"></h2><div class="grid" id="grid"></div></div>`}
+function rot(){const s=document.querySelectorAll('.sl'),d=document.querySelectorAll('.dots i');bi=0;if(s.length<2)return;
+ bt=setInterval(()=>{if(!s[0].isConnected){clearInterval(bt);return}s[bi].classList.remove('on');d[bi].classList.remove('on');bi=(bi+1)%s.length;s[bi].classList.add('on');d[bi].classList.add('on')},4000)}
+function card(p){const d=p.old>p.price?Math.round((1-p.price/p.old)*100):0,w=WL().includes(p.id);
+ return `<div class="card"><a href="#/p/${p.id}" class="im">${pic(p)}</a><button class="hrt ${w?'on':''}" onclick="wish('${p.id}')" aria-label="Toggle wishlist">♥</button><div class="pb"><a href="#/p/${p.id}" class="nm">${esc(p.name)}</a><div class="pr">${money(p.price)}</div><div class="old">${d?`<s>${money(p.old)}</s> −${d}%`:'&nbsp;'}</div><button class="btn" onclick="add('${p.id}')" ${p.stock<1?'disabled':''}>${p.stock<1?'Sold out':'Add to cart'}</button></div></div>`}
+function renderGrid(){const g=$('#grid');if(!g)return;const C=L('categories'),q=Q.trim().toLowerCase();
+ $('#chips').innerHTML=[{id:'',name:'All',emoji:'🛍️'},...C].map(c=>`<button class="${CAT===c.id?'on':''}" onclick="CAT='${c.id}';renderGrid()">${esc(c.emoji)} ${esc(c.name)}</button>`).join('');
+ if(!LD.products){$('#gt').textContent='';g.innerHTML='<div style="grid-column:1/-1">'+empty('⏳','Loading products…','Fetching the latest catalogue.')+'</div>';return}
+ const all=L('products'),R=all.filter(p=>(!CAT||p.cat===CAT)&&(!q||((p.name||'')+' '+(p.desc||'')).toLowerCase().includes(q)));
+ $('#gt').textContent=q?`Results for “${Q.trim()}”`:CAT?(C.find(c=>c.id===CAT)||{}).name||'Products':'Just for you';
+ g.innerHTML=R.length?R.map(card).join(''):`<div style="grid-column:1/-1">${all.length?empty('🔍','No products found','Try a different search or category.'):empty('📦','No products yet','The store owner has not added products.')}</div>`}
+function pd(id){if(!LD.products)return empty('⏳','Loading…','Fetching the product.');const p=prod(id);if(!p)return empty('📦','Product not found','It may have been removed.','Back to shop','#/');
+ const d=p.old>p.price?Math.round((1-p.price/p.old)*100):0,c=(L('categories').find(x=>x.id===p.cat5||x.id===p.cat)||{}).name||'';
+ return `<div class="wrap"><div class="two"><div class="box im" style="font-size:120px;height:280px;padding:0">${pic(p)}</div><div class="box"><h2>${esc(p.name)}</h2><div class="pr" style="font-size:26px">${money(p.price)}</div>${d?`<div class="old"><s>${money(p.old)}</s> −${d}%</div>`:''}<p style="margin:10px 0;color:var(--m)">${esc(p.desc)}</p><p>Category: <b>${esc(c)}</b></p><p style="margin:4px 0 12px">${p.stock>0?`<span style="color:var(--g);font-weight:600">${p.stock} in stock</span>`:'<span style="color:var(--r);font-weight:600">Out of stock</span>'}</p>
+ <label style="max-width:110px">Quantity<input id="qty" type="number" min="1" max="${Math.max(p.stock,1)}" value="1"></label>
+ <div style="display:flex;gap:8px"><button class="btn" ${p.stock<1?'disabled':''} onclick="add('${p.id}',+$('#qty').value||1)">Add to cart</button><button class="btn ln" onclick="wish('${p.id}')">${WL().includes(p.id)?'♥ Saved':'♡ Save'}</button></div></div></div></div>`}
+async function wish(id){const w=WL().slice(),i=w.indexOf(id);i<0?w.push(id):w.splice(i,1);toast(i<0?'Added to wishlist':'Removed from wishlist');
+ if(user){DB.wish=w;draw();try{await db.doc('wishlists/'+user.uid).set({ids:w})}catch(e){toast(fe(e))}}else{try{localStorage.setItem('samir_wishlist',JSON.stringify(w))}catch(e){}draw()}}
+function add(id,q=1){const p=prod(id),C=CART();let c=C.find(x=>x.id===id);const n=(c?c.qty:0)+Math.max(1,q);
+ if(n>p.stock)return toast(`Only ${p.stock} in stock`);c?c.qty=n:C.push({id,qty:n});SETC(C);toast('Added to cart');draw();const i=$('.nav a:nth-child(3) i');if(i)i.classList.add('bump')}
+function qty(id,d){const C=CART(),c=C.find(x=>x.id===id),p=prod(id),n=c.qty+d;if(n<1)return rm(id);if(n>p.stock)return toast(`Only ${p.stock} in stock`);c.qty=n;SETC(C);draw()}
+function rm(id){SETC(CART().filter(x=>x.id!==id));toast('Removed from cart');draw()}
+const lines=()=>CART().map(c=>({...(prod(c.id)||{}),qty:c.qty})).filter(x=>x.id);
+function wl(){const R=WL().map(prod).filter(Boolean);return R.length?`<div class="wrap"><h2>Wishlist</h2><div class="grid">${R.map(card).join('')}</div></div>`:empty('♡','Your wishlist is empty','Tap the heart on any product to save it.','Browse products','#/')}
+function cart(){const R=lines();if(!R.length)return empty('🛒','Your cart is empty','Add products to start an order.','Browse products','#/');
+ const sub=R.reduce((s,p)=>s+p.price*p.qty,0);
+ return `<div class="wrap"><h2>Shopping cart</h2><div class="box">${R.map(p=>`<div class="row"><div class="e">${pic(p)}</div><div class="g"><a href="#/p/${p.id}">${esc(p.name)}</a><div class="pr">${money(p.price)}</div></div><div class="q"><button onclick="qty('${p.id}',-1)" aria-label="Less">−</button><b>${p.qty}</b><button onclick="qty('${p.id}',1)" aria-label="More">+</button></div><button class="btn ln" onclick="rm('${p.id}')">Remove</button></div>`).join('')}</div><div class="box sum"><div><span>Subtotal</span><b>${money(sub)}</b></div><p style="color:var(--m);font-size:12px">Delivery and coupons are added at checkout.</p><a class="btn" style="display:block;text-align:center;margin-top:8px" href="#/checkout">Proceed to checkout</a></div></div>`}
+
+/* Checkout */
+function cpn(c,sub){if(!c)return{d:0};if(c.active!=='yes')return{d:0,err:'Coupon is not valid'};if(sub<c.min)return{d:0,err:`Coupon needs a subtotal of ${money(c.min)} or more`};
+ return{d:Math.min(sub,c.type==='pct'?sub*c.value/100:c.value)}}
+function calc(R,dist,c){const st=S(),sub=R.reduce((s,p)=>s+p.price*p.qty,0),d=Math.round(cpn(c,sub).d);
+ const del=st.free>0&&sub>=st.free?0:(dist==='Dhaka'?st.dhaka:st.out);return{sub,disc:d,del,total:sub-d+del}}
+function checkout(){const R=lines();if(!R.length)return empty('🛒','Your cart is empty','Add a product before checking out.','Browse products','#/');
+ if(!user)return empty('👤','Log in to place your order','Create a free account or log in so you can check out and track your orders.','Log in or register','#/account');
+ const me=ME(),v=k=>esc(CK[k]??me[k]??''),dist=CK.district??me.district??'',pay=CK.pay||'cod',t=calc(R,dist,CK.cobj),st=S();
+ 
+ const pays=[
+   ['cod','Cash on Delivery'],
+   ['bkash', st.bkash ? `bKash (Send Money: ${st.bkash})` : 'bKash'],
+   ['nagad', st.nagad ? `Nagad (Send Money: ${st.nagad})` : 'Nagad'],
+   ['rocket', st.rocket ? `Rocket (Send Money: ${st.rocket})` : 'Rocket']
+ ];
+
+ return `<div class="wrap"><h2>Checkout</h2><div class="two"><div><div class="box"><h3>Delivery details</h3>
+ <label>Customer name<input name="name" value="${v('name')}" oninput="CK.name=this.value"></label>
+ <label>Mobile number<input name="phone" inputmode="tel" value="${v('phone')}" oninput="CK.phone=this.value" placeholder="01XXXXXXXXX"></label>
+ <label>District<select name="district" onchange="CK.district=this.value;draw()"><option value="">Select district</option>${DIST.map(d=>`<option ${d===dist?'selected':''}>${d}</option>`).join('')}</select></label>
+ <label>Full address<textarea name="addr" rows="2" oninput="CK.addr=this.value">${v('addr')}</textarea></label>
+ <label>Order notes (optional)<textarea name="note" rows="2" oninput="CK.note=this.value">${v('note')}</textarea></label></div>
+ <div class="box"><h3>Payment method</h3>${pays.map(([k,n])=>`<label class="rad"><div class="rd-row"><input type="radio" name="pay" ${pay===k?'checked':''} onchange="CK.pay='${k}';draw()">${n}</div>
+ ${pay===k && k!=='cod' ? `<input type="text" placeholder="Enter your ${k} Transaction ID (TrxID)" name="trxid" value="${esc(CK.trxid||'')}" oninput="CK.trxid=this.value" style="margin-top:6px">` : ''}
+ </label>`).join('')}
+ ${pay==='cod'?'':'<div class="note">Please Send Money to the above number, then provide your Transaction ID (TrxID) below to confirm your order.</div>'}</div></div>
+ <div class="box sum"><h3>Order summary</h3>${R.map(p=>`<div><span>${esc(p.name)} × ${p.qty}</span><span>${money(p.price*p.qty)}</span></div>`).join('')}
+ <label style="margin-top:8px">Coupon code (try WELCOME10)<span style="display:flex;gap:6px"><input id="cp" value="${esc(CK.code||'')}" style="text-transform:uppercase"><button class="btn ln" type="button" onclick="applyCp()">Apply</button></span></label>
+ <div><span>Subtotal</span><span>${money(t.sub)}</span></div><div><span>Discount</span><span style="color:var(--g)">−${money(t.disc)}</span></div><div><span>Delivery${dist?'':' (pick district)'}</span><span>${t.del?money(t.del):'Free'}</span></div>
+ <div class="tot"><span>Total</span><span>${money(t.total)}</span></div><p style="color:var(--m);font-size:12px">Estimated delivery: ${esc(st.days)}</p><button class="btn" id="pb" style="width:100%;margin-top:10px" onclick="place()">Place order</button></div></div></div>`}
+async function applyCp(){const code=$('#cp').value.trim().toUpperCase();
+ if(!code){CK.code='';CK.cobj=null;toast('Coupon removed');return draw()}
+ try{const d=await db.doc('coupons/'+code).get(),c=d.exists?d.data():null,r=cpn(c,calc(lines(),'Dhaka',null).sub);
+  if(!c||r.err){CK.code='';CK.cobj=null;toast(r.err||'Coupon is not valid')}else{CK.code=code;CK.cobj=c;toast('Coupon applied')}}catch(e){CK.code='';CK.cobj=null;toast('Could not check that coupon')}draw()}
+async function place(){const R=lines(),g=k=>($(`[name=${k}]`)?.value||'').trim(),name=g('name'),phone=g('phone').replace(/[\s-]/g,''),dist=g('district'),addr=g('addr');
+ if(!user)return toast('Log in first');if(!name)return toast('Enter your name');if(!/^01\d{9}$/.test(phone))return toast('Enter an 11-digit mobile number starting with 01');if(!dist)return toast('Select your district');if(!addr)return toast('Enter your full address');
+ const payMethod = CK.pay || 'cod';
+ const trxId = g('trxid');
+ if(payMethod !== 'cod' && !trxId) return toast('Please enter your Transaction ID (TrxID)');
+ for(const r of R)if(r.qty>r.stock)return toast(`${r.name}: only ${r.stock} left`);
+ const t=calc(R,dist,CK.cobj),id='SS-'+Date.now().toString(36).toUpperCase().slice(-6)+Math.random().toString(36).slice(2,4).toUpperCase(),now=new Date(),b=$('#pb');b.disabled=true;b.textContent='Placing order…';
+ 
+ const payNames = {cod:'Cash on Delivery',bkash:'bKash',nagad:'Nagad',rocket:'Rocket'};
+ const o={id,uid:user.uid,email:user.email,ts:now.getTime(),date:now.toLocaleString(),name,phone,district:dist,addr,note:g('note'),
+  pay: payNames[payMethod] + (trxId ? ` (TrxID: ${trxId})` : ''),
+  items:R.map(p=>({id:p.id,name:p.name,emoji:p.emoji||'📦',price:p.price,qty:p.qty})),sub:t.sub,disc:t.disc,coupon:t.disc?(CK.code||''):'',del:t.del,total:t.total,status:'Pending',supplier:'',tracking:'',stockDeducted:false,timeline:[{s:'Pending',t:now.toLocaleString()}]};
+ try{await db.doc('orders/'+id).set(o);await db.doc('users/'+user.uid).set({uid:user.uid,name,phone,district:dist,addr},{merge:true});SETC([]);CK={};toast('Order placed');location.hash='#/track/'+id}
+ catch(e){console.error(e);toast(fe(e));b.disabled=false;b.textContent='Place order'}}
+
+/* Account */
+function account(){const me=ME();
+ if(!me)return `<div class="wrap" style="max-width:460px"><h2>Account</h2>
+ <div class="box"><h3>Log in</h3><label>Email<input id="le" type="email" autocomplete="username"></label><label>Password<input id="lw" type="password" autocomplete="current-password"></label><button class="btn" onclick="login()">Log in</button> <button class="btn ln" onclick="resetPw()">Forgot password</button></div>
+ <div class="box"><h3>Create account</h3><label>Name<input id="rn"></label><label>Email<input id="re" type="email"></label><label>Mobile number<input id="rp" inputmode="tel" placeholder="01XXXXXXXXX"></label><label>Password (6+ characters)<input id="rw" type="password" autocomplete="new-password"></label><button class="btn ln" onclick="register()">Create account</button></div></div>`;
+ return `<div class="wrap" style="max-width:460px"><h2>Hello, ${esc(me.name)}</h2><div class="box"><p>${esc(me.email)} · ${DB.orders.length} order${DB.orders.length===1?'':'s'} · <a href="#/orders" style="color:var(--o)">View my orders</a></p></div>
+ <div class="box"><h3>Profile</h3><label>Name<input id="pn" value="${esc(me.name)}"></label><label>Mobile number<input id="pp" inputmode="tel" value="${esc(me.phone)}"></label><label>District<select id="pd"><option value="">Select district</option>${DIST.map(d=>`<option ${d===me.district?'selected':''}>${d}</option>`).join('')}</select></label>
+ <label>Address<textarea id="pa" rows="2">${esc(me.addr)}</textarea></label><label>New password (leave blank to keep)<input id="pw" type="password" autocomplete="new-password"></label><button class="btn" onclick="saveProfile()">Save profile</button> <button class="btn ln" onclick="auth.signOut().then(()=>toast('Logged out'))">Log out</button></div></div>`}
+async function login(){try{await auth.signInWithEmailAndPassword($('#le').value.trim(),$('#lw').value);toast('Logged in')}catch(e){toast(fe(e))}}
+async function resetPw(){const e=$('#le').value.trim();if(!e)return toast('Enter your email first');try{await auth.sendPasswordResetEmail(e);toast('Password reset email sent')}catch(x){toast(fe(x))}}
+async function register(){const n=$('#rn').value.trim(),e=$('#re').value.trim(),p=$('#rp').value.trim(),w=$('#rw').value;
+ if(!n)return toast('Enter your name');if(!e)return toast('Enter your email');if(!/^01\d{9}$/.test(p))return toast('Enter an 11-digit number starting with 01');if(w.length<6)return toast('Password needs 6+ characters');
+ try{const c=await auth.createUserWithEmailAndPassword(e,w);await db.doc('users/'+c.user.uid).set({uid:c.user.uid,name:n,email:e,phone:p,district:'',addr:'',joined:new Date().toLocaleDateString()});toast('Account created')}catch(x){toast(fe(x))}}
+async function saveProfile(){const n=$('#pn').value.trim();if(!n)return toast('Name is required');const p=$('#pp').value.trim();if(p&&!/^01\d{9}$/.test(p))return toast('Enter an 11-digit number starting with 01');
+ try{await db.doc('users/'+user.uid).set({uid:user.uid,name:n,phone:p,district:$('#pd').value,addr:$('#pa').value.trim()},{merge:true});if($('#pw').value){if($('#pw').value.length<6)return toast('Password needs 6+ characters');await user.updatePassword($('#pw').value)}toast('Profile saved')}catch(e){toast(fe(e))}}
+
+/* Orders & tracking */
+function myOrders(){if(!user)return empty('👤','Log in to see your orders','Orders you place with your account appear here.','Log in','#/account');
+ if(!LD.orders)return empty('⏳','Loading your orders…','');const O=DB.orders;if(!O.length)return empty('📦','No orders yet','Orders you place will appear here.','Start shopping','#/');
+ return `<div class="wrap"><h2>My orders</h2>${O.map(o=>`<a class="box row" href="#/track/${o.id}"><div class="g"><b>${o.id}</b><div style="color:var(--m)">${esc(o.date)} · ${o.items.reduce((s,i)=>s+i.qty,0)} item(s)</div></div><span class="pill ${cls(o.status)}">${o.status}</span><b>${money(o.total)}</b></a>`).join('')}</div>`}
+function track(id){id=decodeURIComponent(id||'');if(!user)return empty('👤','Log in to track orders','Tracking is available for orders placed with your account.','Log in','#/account');
+ let h=`<div class="wrap" style="max-width:640px"><h2>Track your order</h2><div class="box"><label>Order ID<input id="tid" placeholder="SS-XXXXXX" value="${esc(id)}"></label><button class="btn" onclick="doTrack()">Track order</button></div>`;
+ if(id){const o=DB.orders.find(x=>x.id.toLowerCase()===id.toLowerCase());
+  if(!o)h+=LD.orders?empty('🔎','Order not found','Check the order ID. You can only track orders placed with this account.'):empty('⏳','Loading…','');
+  else{const i=ST.indexOf(o.status),T=k=>(o.timeline||[]).find(x=>x.s===k);
+   h+=`<div class="box"><div style="display:flex;justify-content:space-between"><h3>${o.id}</h3><span class="pill ${cls(o.status)}">${o.status}</span></div><p style="color:var(--m)">Placed ${esc(o.date)} · ${esc(o.pay)}</p>
+   ${o.tracking?`<div class="note"><b>Delivery tracking:</b> ${esc(o.tracking)}</div>`:''}
+   ${o.status==='Cancelled'?`<div class="note">This order was cancelled${T('Cancelled')?' on '+esc(T('Cancelled').t):''}.</div>`:`<div class="tl">${ST.map((s,k)=>`<div class="${k<=i?'d':''}">${s}${T(s)?`<small>${esc(T(s).t)}</small>`:''}</div>`).join('')}</div>`}
+   ${o.items.map(x=>`<div class="row"><div class="e">${esc(x.emoji||'📦')}</div><div class="g">${esc(x.name)} × ${x.qty}</div><b>${money(x.price*x.qty)}</b></div>`).join('')}
+   <div class="sum"><div><span>Discount</span><span>−${money(o.disc)}</span></div><div><span>Delivery</span><span>${money(o.del)}</span></div><div class="tot"><span>Total</span><span>${money(o.total)}</span></div></div>
+   <p style="color:var(--m);font-size:12px">Deliver to ${esc(o.name)}, ${esc(o.addr)}, ${esc(o.district)}${o.note?'<br>Note: '+esc(o.note):''}</p></div>`}}
+ return h+'</div>'}
+function doTrack(){const i=$('#tid').value.trim();if(!i)return toast('Enter an order ID');const h='#/track/'+encodeURIComponent(i);location.hash===h?draw():location.hash=h}
+draw();
+</script></body></html>
